@@ -18,8 +18,17 @@ class PushButton ():
         self.field=field
         
     def display(self):
+        if type(self.val) == str:  #it's a logButton
+            sText = self.val + '\n' + str(round(eval('self.targ' + '.' + self.field),2))
+        else:
+            s = '+' if self.val>0 else ''
+            sText = self.field +'\n'+ s + str(self.val)
         if self.isOver():
             # we are over
+            if type(self.val) == str:  #it's a logButton
+                sText = self.val + '\n' + str(round(eval('self.targ' + '.' + self.field)*self.getFactor(mouseX),2))
+                #print(sText)
+                #print (eval('self.targ' + '.' + self.field)*self.getFactor(mouseX))
             if mousePressed:
                 self.c = PushButton.pushedColor
                 self.onClick()
@@ -35,11 +44,7 @@ class PushButton ():
         rect(0,0,self.pbW,self.pbH)
         textAlign(CENTER,CENTER)
         fill(PushButton.textColor)
-        if type(self.val) == str:
-            text(self.val + '\n' + str(round(eval('self.targ' + '.' + self.field),2)),0,0)
-        else:
-            s = '+' if self.val>0 else ''
-            text(self.field +'\n'+ s + str(self.val),0,0)
+        text(sText,0,0)
         popMatrix()
     
     def isOver(self):
@@ -96,7 +101,7 @@ class LogButton(PushButton):
             
     def onClick(self):
         if millis() > PushButton.debounceDelay + self.lastClickTime:
-            #s ='self.targ' +  ' *=' + str(self.getFactor(mouseX))
+            s ='self.targ' +  ' *=' + str(self.getFactor(mouseX))
             #print(s)
             s ='self.targ' +'.' + self.field + ' *=' + str(self.getFactor(mouseX))
             #print(s)

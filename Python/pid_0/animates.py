@@ -1,3 +1,5 @@
+from defaults import Defaults
+
 class Animate ():
     """ Instances move according to the laws of kinematics, 
     discretely changing state as per:
@@ -78,26 +80,25 @@ class Animate ():
         return self.a
     
 class LongTail():
-    nb = 20
-    
+  
     def __init__(self):
         self.coords = []
         
     def update(self,xVal):
         self.coords = [xVal,] +self.coords
         
-        if len(self.coords)> self.nb:
-            self.coords =  self.coords[0:20]
+        if len(self.coords)> Defaults.tailLength:
+            self.coords =  self.coords[0:Defaults.tailLength]
         #print(self.coords)
         
     def display (self):
         pushMatrix()
-        translate(width/2.0,height/2.0)
+        translate(width/2.0,height*Defaults.yFactor)
         fill(Animate.targetColor)
         stroke(Animate.targetColor)
         ellipseMode(CENTER)
         i=1
         for x in self.coords[1:]:
-            ellipse(x,-20*i,Animate.targetWidth/(0.9*(i+1)),Animate.targetWidth/(0.9*(i+1)))
+            ellipse(x,-Defaults.tailStepHeight*i,Animate.targetWidth/(0.9*(i+1)),Animate.targetWidth/(0.9*(i+1)))
             i+=1
         popMatrix()
