@@ -1,6 +1,5 @@
-
-
 class PID{
+  // for display of parameter values
   final color textColor = #00FF00;
   
   float previousError = 0,
@@ -17,6 +16,7 @@ class PID{
     Kd = new fIndirectable(KD);
   }
   
+  // code from wikipedia
   float update(float mv, float dt){
     float error = sp - mv;
     integral += error*dt;
@@ -26,6 +26,7 @@ class PID{
     return output;
   }
   
+  // display of parameter values, not of the PID itself
   void display(){
     int x = 2,
         y = 60;
@@ -37,4 +38,3 @@ class PID{
     }
   }
 }
-        

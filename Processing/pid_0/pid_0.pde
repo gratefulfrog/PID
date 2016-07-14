@@ -34,12 +34,10 @@ void keyPressed(){
   switch(key){
     case 'd':
     case 'D':
-      println('D');
       app.setDefaults();
       break;
     case 'r':
     case 'R':
-      println('R');
       defaults.resetFactoryDefaults();
       break;
     case 'q':
@@ -48,18 +46,19 @@ void keyPressed(){
       break;
   }
   app.reset();
-  delay(1000);
+  delay(pause*2);
 }
 void displayLegend(){
   final String d = "D:\tSet current values as defaults and restart",
                r = "R:\tfactory Reset all values and restart",
                q = "Q:\tQuit",
                a = "Any Other Key: Reset all values to current defautls and restart",
-               line = d + "\n" + r + "\n" + q + "\n" + a; 
+               v = "Clicking the Velocity buttons changes the value according to where clicked",
+               line = d + "\n" + r + "\n" + q + "\n" + a  + "\n" + v; 
 
   fill(#00FF00);
   textAlign(LEFT);
-  text(line,width/2.0-3.5*(max(max(d.length(),r.length(),q.length()),a.length()))/2.0,height-50);
+  text(line,width/2.0-3.5*(max(max(d.length(),r.length(),q.length()),a.length()))/2.0,height-60);
 }
 
 void resetFactoryDefaults(){

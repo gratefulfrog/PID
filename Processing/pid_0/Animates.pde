@@ -1,11 +1,11 @@
 final color red   = #FF0000,
-          green = #00FF00,
-          blue  = #0000FF,
-          targetColor = red,
-          followerColor = green;
+            green = #00FF00,
+            blue  = #0000FF,
+            targetColor = red,
+            followerColor = green;
 
 final float targetWidth = 50.0,
-          followerWidth = 50.0;
+            followerWidth = 50.0;
         
 class Animate{
   /* Instances move according to the laws of kinematics, 
@@ -59,7 +59,6 @@ class Animate{
       for (int i=0;i<10;i++){
         res = max(res,widthVec[i]);
       }
-     // println(res);
       return res;
     }
     
@@ -83,11 +82,11 @@ class LongTail{
   LongTail(){}
   
   void update(float xVal){
-    for (int i=0;i<defaults.tailLength-1;i++){
-      coords[i+1]=coords[i];
+    for (int i=defaults.tailLength-1;i>0;i--){
+      coords[i]=coords[i-1];
     }
     coords[0]=xVal;
-    nbCoords=min(10,++nbCoords);
+    nbCoords=min(defaults.tailLength,++nbCoords);
   }
   void display (){
     pushMatrix();

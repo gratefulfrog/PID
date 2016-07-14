@@ -1,41 +1,42 @@
 class App {
-  final float deltaT = 1;
+  final float deltaT = 1.0;
   
   Animate target,
           follower;
   PID controller;
   LongTail lt;
-  PushButton pb;
-  /*PushButtonRow pb[3];
-  */
+  PushButtonAdderRow pbRVec[];
   laVelocity vel;
-  /*LogButton lb,
-            ab;
-  */
+  PushButton lb,
+             ab;
   
   App(){
     reset();
   }
   void display(long count){
-    pb.display();
+    // first displlay the values and buttons
     controller.display();
-    /*    for p in self.pb:
-            p.display()
-        self.lb.display()
-        self.ab.display()
-    */
-    float delta = target.pos()- follower.pos();
+    for(int i=0;i< pbRVec.length;i++){ 
+      pbRVec[i].display();
+    }
+    lb.display();
+    ab.display();
     
+    // now display the animate objects
+    float delta = target.pos()- follower.pos();
     follower.display(height*defaults.yFactor,delta);
     target.display(height*defaults.yFactor);
-    //lt.display()
+    lt.display();
+    
+    // now update the animate objects
     target.update(deltaT);
     follower.update(deltaT);
-    //target.pos(vel.l*cos(deg2rad(count*vel.a)));
-    follower.vel(controller.update(delta,deltaT));
-    /*grd.update(vel.l*sin(deg2rad(count*vel.a)));*/
-    //lt.update(target.pos());
+    target.pos(vel.l.get()*cos(deg2rad(count*vel.a.get())));
+    // note that the delta needs to be recomputed before calling the PID!
+    follower.vel(controller.update(follower.pos()-target.pos(),deltaT));
+    lt.update(target.pos());
   }
+  
   void reset(){
     target = new Animate(true);
     follower = new Animate(false);
@@ -43,18 +44,18 @@ class App {
                           defaults.defaultKp,  //Ku*0.6,
                           defaults.defaultKi,  //Tu/2.0,
                           defaults.defaultKd); //Tu/8.0)
-    pb = new PushButton(500,100,controller.Ki,"Ki",0.01);
-    /*grd = HorizontalGrid(); */
     lt = new LongTail();
-    /*pb =[];
-    pb.append(PushButtonRow(100,60,self.controller,'Kp',[1,-1,0.1,-0.1,0.01,-0.01]))
-    pb.append(PushButtonRow(100,120,self.controller,'Ki',[1,-1,0.1,-0.1,0.01,-0.01]))
-    pb.append(PushButtonRow(100,180,self.controller,'Kd',[1,-1,0.1,-0.1,0.01,-0.01]))
-    */
+
+    pbRVec = new PushButtonAdderRow[3];
+    float valVec[] = {1,-1,0.1,-0.1,0.01,-0.01};
+    pbRVec[0] =  new PushButtonAdderRow(100,60,controller.Kp, "Kp",valVec);
+    pbRVec[1] =  new PushButtonAdderRow(100,120,controller.Ki, "Ki",valVec);
+    pbRVec[2] =  new PushButtonAdderRow(100,180,controller.Kd, "Kd",valVec);
+
     vel = new laVelocity(defaults.distFactor,defaults.turnFactor);
-    /*lb = LogButton(520,60,vel,'l',"Linear Velocity");
-    ab = LogButton(520,60+lb.pbH+lb.pbS,vel,'a', "Angular Velocity");
-    */
+    lb = new PushButtonLogMultiplier(520.0,60.0,vel.l,"Linear Velocity",2.0);
+    ab = new PushButtonLogMultiplier(520,60+lb.pbH+lb.pbS,vel.a, "Angular Velocity",2.0);
+    
   }
   void setDefaults(){
         defaults.defaultKp = controller.Kp.get();

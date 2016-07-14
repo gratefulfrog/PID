@@ -1,3 +1,6 @@
+
+// this is may solution that enables the buttons to indirectly assign values
+// to member variables of other classes
 abstract class Indirectable{ 
   abstract float get();
   abstract void set(float f);
