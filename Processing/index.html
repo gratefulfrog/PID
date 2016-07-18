@@ -3,10 +3,27 @@
   <head>
     <title>Gratefulfrog PID Controller Demo</title>
     <script type="text/javascript"  src="processing.js"></script>
+
+ <style>
+      p {width: 1500px}
+
+</style>
   </head>
   <body>
     <h1>PID Controller Demo</h1>
-    <p>This is a Processing.js web-based version of my PID controller following a sinusoidal displacement.</p>
+    <p>This is a Processing.js web-based version of my PID controller following a sinusoidal displacement. The red target moves back and
+      forth according to a sin law. It's linear and angular velocity are adjustable by the large buttons. Hovering the mouse over the
+      button will display the resulting velocity in case of click.
+    </p>
+    <p>The green follower knows nothing of the behavior of the target. It simply measures the distance between the target center and
+      its own center and feeds that to the PID as error input with a setpoint of 0. The PID calculates a new horizontal velocity for the
+      follower.
+    </p>
+    <p>The radius of the follower is is a weighted maximum for the last 10 cycles. The idea is to keep the radius as small as possible.
+    </p>
+    <p> The values of Kp,Ki,Kd were empirically determined by means of the Ziegler-Nichols method. You can manually adjust the
+      Kp,Ki,Kd parameters to see the consequences on the follower's behavior.
+    </p>
     <canvas id="mysketch" data-processing-sources="pid_0JS/pid_0JS.pde pid_0JS/Animates.pde pid_0JS/App.pde pid_0JS/buttons.pde pid_0JS/defaults.pde pid_0JS/indirection.pde pid_0JS/pid.pde pid_0JS/speed.pde"></canvas>
 
   </body>
