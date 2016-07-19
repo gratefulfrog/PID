@@ -11,7 +11,7 @@
   </head>
   <body>
     <h1>PID Controller Demo</h1>
-    <p>This is a Processing.js web-based version of my PID controller following a sinusoidal displacement. The red target moves back and
+    <p>This is a Processing.js web-based version of my <a href="https://en.wikipedia.org/wiki/PID_controller">PID controller</a> following a sinusoidal displacement. The red target moves back and
       forth according to a sin law. It's linear and angular velocity are adjustable by the large buttons. Hovering the mouse over the
       button will display the resulting velocity in case of click.
     </p>
@@ -21,7 +21,7 @@
     </p>
     <p>The radius of the follower is is a weighted maximum for the last 10 cycles. The idea is to keep the radius as small as possible.
     </p>
-    <p> The values of Kp,Ki,Kd were empirically determined by means of the Ziegler-Nichols method. You can manually adjust the
+    <p> The values of Kp,Ki,Kd were empirically determined by means of the <a href="https://en.wikipedia.org/wiki/Ziegler%E2%80%93Nichols_method">Ziegler-Nichols method.</a> You can manually adjust the
       Kp,Ki,Kd parameters to see the consequences on the follower's behavior.
     </p>
     <canvas id="mysketch" data-processing-sources="Processing/pid_0JS/pid_0JS.pde Processing/pid_0JS/Animates.pde Processing/pid_0JS/App.pde Processing/pid_0JS/buttons.pde Processing/pid_0JS/defaults.pde Processing/pid_0JS/indirection.pde Processing/pid_0JS/pid.pde Processing/pid_0JS/speed.pde"></canvas>
