@@ -69,9 +69,6 @@ class App {
 
     lb = new PushButtonLogMultiplier(520.0,60.0,vel.l,"Linear Velocity",2.0);
     ab = new PushButtonLogMultiplier(520,60+lb.pbH+lb.pbS,vel.a, "Angular Velocity",2.0);
-    target.vel(20,20);
-    //println(target.vel());
-    
   }
   void setDefaults(){
         defaults.defaultXKp = controllerX.Kp.get();

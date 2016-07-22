@@ -44,7 +44,7 @@ class App {
   
   void reset(){
     //target = new Animate(true);
-    vel = new laVelocity(50,defaults.turnFactor);
+    vel = new laVelocity(defaults.distFactorFactory,defaults.turnFactor);
     target = new Animate8(vel);
     follower = new Animate(false);
     controllerX =  new PID(0, 'X', 0,
@@ -69,7 +69,7 @@ class App {
 
     lb = new PushButtonLogMultiplier(520.0,60.0,vel.l,"Linear Velocity",2.0);
     ab = new PushButtonLogMultiplier(520,60+lb.pbH+lb.pbS,vel.a, "Angular Velocity",2.0);
-    target.vel(20,20);
+    //target.vel(20,20);
     //println(target.vel());
     
   }

@@ -17,7 +17,7 @@ void settings() {
 */
 void setup(){
   size(1500,800);
-  frameRate(15);  // nb steps per second
+  frameRate(10);  // nb steps per second
   background(0);
   app = new App();
   }
