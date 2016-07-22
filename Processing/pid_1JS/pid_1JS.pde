@@ -1,5 +1,5 @@
-/* pid_0 processing version
- * pid_0
+/* pid_1 processing JS version
+ * pid_1
  * implemtation od discrete pid algo as per 
  * https://en.wikipedia.org/wiki/PID_controller#Pseudocode
  * PID tuning as per Ziegler–Nichols method
@@ -17,6 +17,7 @@ void settings() {
 */
 void setup(){
   size(1500,800);
+  frameRate(15);  // nb steps per second
   background(0);
   app = new App();
   }
@@ -29,7 +30,7 @@ void draw(){
   background(0);
   app.display(count++);
   displayLegend();
-  delay(pause);
+  //delay(pause);
 }
 
 void keyPressed(){
@@ -64,9 +65,12 @@ void displayLegend(){
 }
 
 void resetFactoryDefaults(){
-    defaults.defaultKp = defaults.defaultKpFactory;
-    defaults.defaultKi = defaults.defaultKiFactory;
-    defaults.defaultKd = defaults.defaultKdFactory;
+    defaults.defaultXKp = defaults.defaultKpFactory;
+    defaults.defaultXKi = defaults.defaultKiFactory;
+    defaults.defaultXKd = defaults.defaultKdFactory;
+    defaults.defaultYKp = defaults.defaultKpFactory;
+    defaults.defaultYKi = defaults.defaultKiFactory;
+    defaults.defaultYKd = defaults.defaultKdFactory;
     defaults.distFactor= defaults.distFactorFactory;
     defaults.turnFactor= defaults.turnFactorFactory;
 }
