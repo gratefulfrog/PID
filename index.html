@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Gratefulfrog PID Controller Demo</title>
+    <title>Gratefulfrog PID Controller Demos</title>
     <script type="text/javascript"  src="processing.js"></script>
 
  <style>
@@ -10,13 +10,13 @@
 </style>
   </head>
   <body>
-    <h1>PID Controller Demo</h1>
+    <h1>PID Controller Demos</h1>
     <p>This is a Processing.js web-based version of my <a href="https://en.wikipedia.org/wiki/PID_controller">PID controller</a> following a sinusoidal displacement. The red target moves back and
       forth according to a sin law. It's linear and angular velocity are adjustable by the large buttons. Hovering the mouse over the
       button will display the resulting velocity in case of click.
     </p>
-    <p>The green follower knows nothing of the behavior of the target. It simply measures the distance between the target center and
-      its own center and feeds that to the PID as error input with a setpoint of 0. The PID calculates a new horizontal velocity for the
+    <p>The green follower knows nothing of the behavior of the target. It simply measures the horizontal and vertical distances between the target center and
+      its own center and feeds them to the 2 PID controllers as error input with a setpoint of 0. Each PID calculates a new velocity (horizontal or vertical) for the
       follower.
     </p>
     <p>The radius of the follower is is a weighted maximum for the last 10 cycles. The idea is to keep the radius as small as possible.
@@ -24,14 +24,12 @@
     <p> The values of Kp,Ki,Kd were empirically determined by means of the <a href="https://en.wikipedia.org/wiki/Ziegler%E2%80%93Nichols_method">Ziegler-Nichols method.</a> You can manually adjust the
       Kp,Ki,Kd parameters to see the consequences on the follower's behavior.
     </p>
-    <h2> Figure 8 </h2>
-        <p>Demonstration of 2 PID controllers acting on the Follower's horizontal and vertical velocities.</p>
-    <canvas id="mysketch8" data-processing-sources="Processing/pid_1JS/pid_1JS.pde Processing/pid_1JS/Animates.pde Processing/pid_1JS/App.pde Processing/pid_1JS/buttons.pde Processing/pid_1JS/defaults.pde Processing/pid_1JS/indirection.pde Processing/pid_1JS/pid.pde Processing/pid_1JS/speed.pde"></canvas>
-    
-    <h2>Back and Forth</h2>
-    <p>Demonstration of a single PID controller acting on the Follower's horizontal velocity.</p>
-    <canvas id="mysketch" data-processing-sources="Processing/pid_0JS/pid_0JS.pde Processing/pid_0JS/Animates.pde Processing/pid_0JS/App.pde Processing/pid_0JS/buttons.pde Processing/pid_0JS/defaults.pde Processing/pid_0JS/indirection.pde Processing/pid_0JS/pid.pde Processing/pid_0JS/speed.pde"></canvas>
-
+    <ul>
+      <li><a href="figure8.html">Figure 8</a>: Demonstration of 2 PID controllers used to control horizontal and vertical velocities in
+	tracking a target as it executes a figure 8, </li>
+      <li><a href="linear.html">Back and Forth</a>: Demonstration of a single PID controller acting on horizontal velicity so as to
+	track a target as it moves back and forth.</li>
+    </ul>
   </body>
 </html>
 
