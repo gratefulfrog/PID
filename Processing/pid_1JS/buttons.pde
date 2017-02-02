@@ -23,7 +23,7 @@ abstract class PushButton{
       lastClickTime = millis();
       fi=ffi;
       av = addVal;
-      displayText = new String(label + '\f\n' + nfp(av,1,0));
+      displayText = new String(label + "\f\n" + nfp(av,1,0));
   }
         
   void display(){
@@ -152,10 +152,10 @@ class PushButtonLogMultiplier extends PushButtonMultiplier{
   }
   
   void display(){
-    displayText = fieldName + '\f\n' + nf(fi.get(),0,2);
+    displayText = fieldName + "f\n" + nf(fi.get(),0,2);
     super.display();
   }
   void updateLabel(){
-    displayText = fieldName + '\f\n' + nf(fi.get()*mapMouse(),0,2);  
+    displayText = fieldName + "\f\n" + nf(fi.get()*mapMouse(),0,2);  
   }    
 }
